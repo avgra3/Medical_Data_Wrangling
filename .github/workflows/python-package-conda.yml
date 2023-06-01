@@ -25,8 +25,13 @@ jobs:
         echo $CONDA/bin >> $GITHUB_PATH
     - name: Install dependencies
       run: |
+        # Sets up our anaconda environment
         conda env update --file environment.yml --name base
+        # Installs mariadb-server
         sudo apt install mariadb-server
+        # Verify version
+        mysql -V
+        # Installs mariadb python connector
         pip install mariadb
     - name: Test with pytest
       run: pytest

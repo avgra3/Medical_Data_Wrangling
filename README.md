@@ -6,6 +6,15 @@ The goal of this project is to automate the loading of data into a MariaDB datab
 
 ## Setup
 
+### Prepare Environment variables
+
+Rename [EXAMPLE.env](.\DataWrangling\EXAMPLE.env) to [.env](.\DataWrangling\EXAMPLE.env) and update the data path with the path to your data as a string. Then, update the data types with a dictionary with the column names as keys and data types for values of the dictionary. Follow the example as below:
+
+```env
+DATA_PATH = './path/to/file'
+DATA_TYPES = '{"column_name_1": dataType_1, "column_name_2": dataType_2}'
+```
+
 ### Anaconda/Miniconda
 
 From your terminal, with Anaconda/Miniconda installed, run the below.
