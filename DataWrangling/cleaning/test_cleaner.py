@@ -7,6 +7,15 @@ import pytest
 
 
 @pytest.fixture(scope="session")
+def basic_pandas():
+    data = {
+        "input_case_id": [f"{x * 100}" for x in range(100)],
+        "input_address": [f"{x} Random Rd" for x in range(100)],
+    }
+    return pd.DataFrame(data)
+
+
+@pytest.fixture(scope="session")
 def column_type():
     col_type = {
         "input_case_id": pd.StringDtype(),
@@ -16,33 +25,17 @@ def column_type():
 
 
 @pytest.fixture(scope="session")
-def file_location(tmp_path_factory):
-    # First create a dictionary with two list of vlaues
-    data = {
-        "input_case_id": [f"{x * 100}" for x in range(100)],
-        "input_address": [f"{x} Random Rd" for x in range(100)],
-    }
-    df = pd.DataFrame(data)
+def file_location(tmp_path_factory, basic_pandas):
     fake_path = tmp_path_factory.mktemp("data") / "test_load.csv"
-    df.to_csv(fake_path, sep="\n", index=False)
+    basic_pandas.to_csv(fake_path, sep="\n", index=False)
     return fake_path
 
 
 @pytest.fixture(scope="session")
-def raw_class(tmp_path_factory):
-    col_type = {
-        "input_case_id": pd.StringDtype(),
-        "address": pd.StringDtype(),
-    }
-
-    data = {
-        "input_case_id": [f"{x * 100}" for x in range(100)],
-        "input_address": [f"{x} Random Rd" for x in range(100)],
-    }
-    df = pd.DataFrame(data)
+def raw_class(tmp_path_factory, basic_pandas, column_type) -> RawData:
     fake_path = tmp_path_factory.mktemp("data") / "test_load.csv"
-    df.to_csv(fake_path, sep="\n", index=False)
-    return RawData(col_type, fake_path, fake_path.suffix[1:])
+    basic_pandas.to_csv(fake_path, sep="\n", index=False)
+    return RawData(column_type, fake_path, fake_path.suffix[1:])
 
 
 class TestRawData:
@@ -83,7 +76,9 @@ class TestRawData:
         assert type(raw_class) == RawData
 
     def test_columns_added(self, raw_class):
-        assert set(self.added_columns).issubset(list(raw_class.cleaned.columns))
+        assert set(self.added_columns).issubset(
+            list(raw_class._add_needed_columns().columns)
+        )
 
     def test_is_pandas(self, raw_class):
         assert type(raw_class.cleaned) == pd.DataFrame
