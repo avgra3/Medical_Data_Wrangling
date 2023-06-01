@@ -64,8 +64,8 @@ class RawData:
         cleaned_dataframe["aprdrg_code"]: pd.StringDtype = "9999"
         cleaned_dataframe["discharge_status_code"]: pd.Int64Dtype = 0
         cleaned_dataframe["admission_type_code"]: pd.Int64Dtype = 998
-        cleaned_dataframe["admission_date"]: "datetime64[ns]" = pd.NA
-        cleaned_dataframe["discharge_date"]: "datetime64[ns]" = pd.NA
+        cleaned_dataframe["admission_date"] = pd.NA
+        cleaned_dataframe["discharge_date"] = pd.NA
         cleaned_dataframe["admission_src_code"]: pd.Int64Dtype = 999
         cleaned_dataframe["diagnosis_code"]: pd.StringDtype = pd.NA
         cleaned_dataframe["procd_code"]: pd.StringDtype = pd.NA
