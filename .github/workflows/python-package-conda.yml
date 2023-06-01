@@ -25,9 +25,7 @@ jobs:
     - name: Install dependencies
       run: |
         conda env update --file environment.yml --name base
-    - name: Add Mariadb
-      run: apt install mariadb
-    - name: From pip add mariadb connector
-      run: pip install mariadb
+        apt install mariadb
+        pip install mariadb
     - name: Test with pytest
       run: pytest
