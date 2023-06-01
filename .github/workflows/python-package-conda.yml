@@ -19,19 +19,19 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: '3.11'
+    - name: Add mariadb to system
+      run: |
+        # Installs mariadb
+        sudo apt install mariadb-server
+        sudo apt-get install -y libmariadb-dev
     - name: Add conda to system path
       run: |
         # $CONDA is an environment variable pointing to the root of the miniconda directory
         echo $CONDA/bin >> $GITHUB_PATH
-    - name: Install dependencies
+    - name: Install python dependencies
       run: |
         # Sets up our anaconda environment
         conda env update --file environment.yml --name base
-        # Installs mariadb-server
-        sudo apt install mariadb-server
-        sudo apt-get install -y libmariadb-dev
-        # Installs mariadb python connector
-        pip install mariadb
     - name: Test with pytest
       run: |
         cd DataWrangling
