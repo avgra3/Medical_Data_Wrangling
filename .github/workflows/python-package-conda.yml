@@ -29,8 +29,7 @@ jobs:
         conda env update --file environment.yml --name base
         # Installs mariadb-server
         sudo apt install mariadb-server
-        # Verify version
-        mysql -V
+        sudo apt-get install -y libmariadb-dev
         # Installs mariadb python connector
         pip install mariadb
     - name: Test with pytest
