@@ -1,0 +1,16 @@
+name: dataLoader
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pandas
+  - pathlib
+  - pytest
+  - pytest-mock
+  - pytest-cov
+  - pandera
+  - pandera-mypy
+  - pydantic
+  - python-decouple
+prefix: C:\Users\agradillas\Miniconda3\envs\dataLoader
