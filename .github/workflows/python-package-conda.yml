@@ -9,16 +9,21 @@ on:
 
 jobs:
   build-linux:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       max-parallel: 5
+      matrix:
+        # Add support for windows-latest
+        os: [ubuntu-latest]
+        # Add support for '3.7', '3.8', '3.9', '3.10'
+        python-version: ['3.11']
 
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python 3.11
       uses: actions/setup-python@v3
       with:
-        python-version: '3.11'
+        python-version: ${{ matrix.python-version }}
     - name: Add mariadb to system
       run: |
         # Installs mariadb
