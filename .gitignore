@@ -1,2 +1,6 @@
 *\__pycache__
 raw_test
+*\.pytest_cache
+*.coverage
+DataWrangling/loading/create_table.sql
+DataWrangling/.env
