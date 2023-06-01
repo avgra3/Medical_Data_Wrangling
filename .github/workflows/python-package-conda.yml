@@ -33,4 +33,6 @@ jobs:
         # Installs mariadb python connector
         pip install mariadb
     - name: Test with pytest
-      run: pytest
+      run: |
+        cd DataWrangling
+        pytest
