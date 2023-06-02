@@ -19,11 +19,15 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: ${{ matrix.python-version }}
+      - name: Add mariadb
+        run: choco install mariadb
+      
       - name: Install depenencies
         run: |
           C:\Miniconda\condabin\conda.bat env update --file environment.yml --name base
           C:\Miniconda\condabin\conda.bat init powershell
           cd DataWrangling
+      
       - name: Lint with flake8
         run: |
           # Activate the base environment

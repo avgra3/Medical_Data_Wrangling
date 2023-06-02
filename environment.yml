@@ -3,12 +3,12 @@ channels:
   - defaults
   - conda-forge
 dependencies:
-  - python=3.11
+  - python
   - pandas
   - pathlib
-  - pytest=7.3
-  - pytest-mock=3.10
-  - pytest-cov=4.1
+  - pytest
+  - pytest-mock
+  - pytest-cov
   - pandera
   - pandera-mypy
   - pydantic=1.10
