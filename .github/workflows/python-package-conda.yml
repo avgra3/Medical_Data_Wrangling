@@ -86,4 +86,4 @@ jobs:
           cd DataWrangling
           
           # Run pytest
-          $CONDA/bin/pytest -v .\DataWrangling\
+          $CONDA/bin/pytest -v ./DataWrangling/
