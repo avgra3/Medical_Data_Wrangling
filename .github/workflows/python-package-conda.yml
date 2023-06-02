@@ -60,7 +60,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Add mariadb
-        run: sudo apt-get mariadb-server
+        run: sudo apt mariadb-server
       
       - name: Install Conda depenencies
         run: |
