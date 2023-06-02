@@ -28,7 +28,7 @@ def valid_pandas():
 """TESTS"""
 
 
-def test_validator(basic_pandas, mocker):
+def test_validator(basic_pandas):
     # Test if dataframe schema fails correctly
     with pytest.raises(pa.errors.SchemaError):
         validator(basic_pandas)
