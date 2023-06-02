@@ -17,16 +17,26 @@ DATA_TYPES = '{"column_name_1": dataType_1, "column_name_2": dataType_2}'
 
 ### Anaconda/Miniconda
 
+#### Windows
+
+From the command line or powershell, with Anaconda installed, run the below
+
+```powershell
+conda env update --file environment.yml --name data_loading
+conda activate data_loading
+```
+
+#### Linux (Untested)
+
 From your terminal, with Anaconda/Miniconda installed, run the below.
 
 ```bash
 conda env update --file environment.yml --name data_loading
 conda activate data_loading
-pip install mariadb
 ```
 
 **NOTE** Before running the code, be sure to have MariaDB C connector installed.
 
-### Pip
+### Pip Method
 
-Currently, you will need to verify that all packages are useable on your machine and installable using pip. Also, it is reccomendded that you use a virtual environment such as pyenv.
+You will need to verify that all packages are useable on your machine and installable using pip. Also, it is reccomendded that you use a virtual environment such as pyenv. As with the Anaconda/Miniconda method, make sure to have MariaDB C connector available on your machine.
