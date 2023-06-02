@@ -8,36 +8,36 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-linux:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      max-parallel: 5
-      matrix:
-        # Add support for windows-latest
-        os: [ubuntu-latest]
-        # Add support for '3.7', '3.8', '3.9', '3.10'
-        python-version: ['3.11']
-
-    steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python 3.11
-      uses: actions/setup-python@v3
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Add mariadb to system
-      run: |
-        # Installs mariadb
-        sudo apt install mariadb-server
-        sudo apt-get install -y libmariadb-dev
-    - name: Add conda to system path
-      run: |
-        # $CONDA is an environment variable pointing to the root of the miniconda directory
-        echo $CONDA/bin >> $GITHUB_PATH
-    - name: Install python dependencies
-      run: |
-        # Sets up our anaconda environment
-        conda env update --file environment.yml --name base
-    - name: Test with pytest
-      run: |
-        cd DataWrangling
-        pytest
+  test-windows:
+      runs-on: windows-latest
+      strategy:
+        matrix:
+          python-version: ['3.7', '3.8', '3.9', '3.10', '3.11']
+      steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install depenencies
+        run: |
+          C:\Miniconda\condabin\conda.bat env update --file environment.yml --name base
+          C:\Miniconda\condabin\conda.bat init powershell
+          cd DataWrangling
+      - name: Lint with flake8
+        run: |
+          # Activate the base environment
+          C:\Miniconda\condabin\conda.bat activate base
+          C:\Miniconda\condabin\conda.bat install flake8
+          
+          # stop the build if there are Python syntax errors or undefined names
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          
+          # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+      
+      - name: Test with pytest
+        run: |
+          # Activate the base environment
+          C:\Miniconda\condabin\conda.bat activate base
+          pytest
