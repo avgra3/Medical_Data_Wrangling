@@ -30,5 +30,5 @@ def valid_pandas():
 
 def test_validator(basic_pandas, mocker):
     # Test if dataframe schema fails correctly
-    with pytest.raises(pa.SchemaError):
+    with pytest.raises(pa.errors.SchemaError):
         validator(basic_pandas)
