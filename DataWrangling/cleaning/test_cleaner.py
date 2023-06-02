@@ -81,9 +81,5 @@ class TestRawData:
         )
 
     def test_is_pandas(self, raw_class):
-        # <class 'pandas.core.frame.DataFrame'>
-        # pd.core.frame.DataFrame
         df = raw_class.cleaned
         assert isinstance(type(df), pd.DataFrame.__class__)
-        # assert isinstance(df, pd.core.frame.DataFrame)
-        # assert type(df) is pd.core.frame.DataFrame
