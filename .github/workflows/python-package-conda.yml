@@ -47,4 +47,4 @@ jobs:
           # Move to correct directory
           cd DataWrangling
           # Run pytest
-          pytest
+          pytest -v
