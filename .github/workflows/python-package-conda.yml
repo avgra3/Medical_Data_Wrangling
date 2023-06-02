@@ -26,7 +26,6 @@ jobs:
         run: |
           C:\Miniconda\condabin\conda.bat env update --file environment.yml --name base
           C:\Miniconda\condabin\conda.bat init powershell
-          cd DataWrangling
       
       - name: Lint with flake8
         run: |
@@ -44,4 +43,7 @@ jobs:
         run: |
           # Activate the base environment
           C:\Miniconda\condabin\conda.bat activate base
+          # Move to correct directory
+          cd DataWrangling
+          # Run pytest
           pytest

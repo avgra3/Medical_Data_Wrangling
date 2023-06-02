@@ -31,7 +31,7 @@ class TestLoader:
         assert expected["inner"] == actual_dictionary["inner"]
 
 
-class TestInser:
+class TestInsert:
     """MAKE CONNECTION"""
 
     """INSERT DATA"""
