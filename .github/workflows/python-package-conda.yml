@@ -51,8 +51,7 @@ jobs:
       runs-on: ubuntu-latest
       strategy:
         matrix:
-          # Other python packages to test '3.7', '3.8', '3.9', '3.10', 
-          python-version: ['3.11']
+          python-version: ['3.7', '3.8', '3.9', '3.10', '3.11']
       steps:
       - uses: actions/checkout@v3
       - uses: conda-incubator/setup-miniconda@v2
@@ -87,4 +86,4 @@ jobs:
           cd DataWrangling
           
           # Run pytest
-          $CONDA/bin/pytest -v
+          $CONDA/bin/pytest -v .\DataWrangling\
