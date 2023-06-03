@@ -19,23 +19,44 @@ DATA_TYPES = '{"column_name_1": dataType_1, "column_name_2": dataType_2}'
 
 #### Windows
 
-From the command line or powershell, with Anaconda installed, run the below
+From the command line or powershell, with Anaconda and [Chocolatey](https://chocolatey.org/install) installed, run the below
 
 ```powershell
+choco install mariadb
 conda env update --file environment.yml --name data_loading
 conda activate data_loading
 ```
 
-#### Linux (Untested)
+**Note** If you need to install Anaconda and already have Chocolatey installed, you can install miniconda by running:
 
-From your terminal, with Anaconda/Miniconda installed, run the below.
+```powershell
+choco install anaconda3
+```
+
+#### Linux
+
+##### Ubuntu
+
+From your terminal run the below:
+
+```bash
+sudo apt-get install mariadb-server
+```
+
+Then, with Anaconda/Miniconda installed, run the below.
 
 ```bash
 conda env update --file environment.yml --name data_loading
 conda activate data_loading
 ```
 
-**NOTE** Before running the code, be sure to have MariaDB C connector installed.
+##### Fedora
+
+Run the below command, then follow the rest of the Ubuntu setup.
+
+```bash
+sudo dnf install mariadb-server
+```
 
 ### Pip Method
 
