@@ -82,8 +82,5 @@ jobs:
       
       - name: Test with pytest
         run: |
-          # Move to correct directory
-          cd DataWrangling
-          
           # Run pytest
           $CONDA/bin/pytest -v ./DataWrangling/
